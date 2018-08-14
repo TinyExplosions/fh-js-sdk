@@ -8,7 +8,6 @@ tmp/*
 *.swp
 .fhclocal/
 src/appforms/dist/
-dist/
 libs/generated/lawnchair.js
 src/modules-cov/*
 src-cov/*
