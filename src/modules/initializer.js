@@ -64,6 +64,15 @@ var loadCloudProps = function(app_props, callback) {
       "data": JSON.stringify(data),
       "timeout": appProps.timeout,
       "success": function(initRes) {
+        var derivedUrl = initRes.hosts.url;
+        derivedUrl = derivedUrl.split('https://')[1];
+        derivedUrl = derivedUrl.split(initRes.hosts.environment)[0] + initRes.hosts.environment;
+        var derivedEnv = {
+          "ist-dev": "dev",
+          "ist-prod": "prod",
+          "ist-test": "test"
+        };
+        initRes.hosts.url = "https://rhmap.global.bp.com/router/" + derivedEnv[initRes.hosts.environment] + "/" + derivedUrl;
         if (storage) {
           storage.save({
             key: "fh_init",
